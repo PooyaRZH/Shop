@@ -4,12 +4,15 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AddProductToBasketDto } from './dto/add-product-to-Basket.dto';
 import { RemoveProductFromBasket } from './dto/remove-product-from-basket.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags("مدیریت کاربران")
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) { }
 
   @Post()
+  @ApiOperation({ summary: "ساخت کاربر (بدون هش پسورد)" })
   create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }
